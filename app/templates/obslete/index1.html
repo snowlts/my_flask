@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}index{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style>
+        .error
+        {
+            color:orange
+        }
+    </style>
+
+{% endblock %}
+
+
+{% block page_content %}
+    <div class="page-header">
+        <p> The local date and time is {{ moment(current_time).format('LLL') }}.</p>
+        <p> That was {{ moment(current_time).fromNow(refresh=True) }}</p>
+
+        {% if users %}
+        {% import 'render_user.html' as render_user %}
+        <ul>
+            <h1>user list:</h1>
+            {% for user in users %}
+                 {{ render_user.render_user(user) }}
+            {% endfor %}
+        </ul>
+
+        <h1> <a href="/logout">logout</a></h1>
+        {% else %}
+            <h1> You are not logged in!</h1>
+            <h1> <a href= {{ url_for("login") }} >login</a></h1>
+        {% endif %}
+        {% include 'foot.html' %}
+    </div>
+
+{% endblock %}
+
+
+

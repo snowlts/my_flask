@@ -1,0 +1,19 @@
+<!doctype html>
+
+<head>
+    {% block head %}
+    <title>{% block title %} {% endblock %} - My Application</title>
+    <link rel="stylesheet" type="text/css" href="/static/layout.css">
+    {% endblock %}
+</head>
+{% with errors = get_flashed_messages(category_filter=['error']) %}
+  {% if errors %}
+    <ul class=flashes>
+    {% for message in errors %}
+      <li class="error">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}
+{% endblock %}

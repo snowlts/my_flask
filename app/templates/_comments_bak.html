@@ -1,0 +1,48 @@
+<ul class="comments">
+        {% for comment in comments %}
+        {% if not comment.disable %}
+        <li class="comment">
+            <div class = "comment-thumbnail" >
+                <a href="{{ url_for('.user', username=comment.author.username) }}">
+                    <img class="img-rounded profile-thumbnail" src="{{ comment.author.gravatar(size=40) }}">
+                </a>
+            </div>
+            <div class="comment-content">
+                <div class="comment-date">{{ moment(comment.timestamp).fromNow(refresh=True) }}</div>
+                <div class="comment-author">
+                    <a href="{{ url_for('.user', username=comment.author.username) }}">
+                     {{ comment.author.username }}
+                    </a>
+                </div>
+                <div class="comment-body">
+                    {% if comment.body_html %}
+                        {{ comment.body_html | safe }}
+                    {% else %}
+                        {{ comment.body }}
+                    {% endif %}
+                </div>
+                <div class="comment-footer">
+                    {% if current_user == comment.author %}
+                    <a href="{{url_for('.delete_comment',id=comment.id)}}">
+                        <span class="label label-primary">Delete</span>
+                    </a>
+                    {% elif current_user.is_administrator() %}
+                    <a href="{{url_for('.disable',id=comment.id)}}">
+                        <span class="label label-danger">
+                            {% if not comment.disable %} Disable {% else %} Enable {% endif %} [Admin]
+                        </span>
+                    </a>
+                    <a href="{{url_for('.delete_comment',id=comment.id)}}">
+                        <span class="label label-danger">Delete [Admin]</span>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </li>
+        {% endif %}
+        {% endfor %}
+ </ul>
+
+
+
+
