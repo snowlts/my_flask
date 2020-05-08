@@ -296,11 +296,15 @@ class User(UserMixin,db.Model):
 
     @staticmethod
     def add_self_follows():
-        for user in User.query.all():
-            if not user.is_following(user):
-                user.follow(user)
-                db.session.add(user)
-                db.session.commit()
+        users=User.query.all()
+        if users is not None:
+            for user in users:
+                if not user.is_following(user):
+                    user.follow(user)
+                    db.session.add(user)
+                    db.session.commit()
+
+
 
 
     def __repr__(self):
