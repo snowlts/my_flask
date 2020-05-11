@@ -2,7 +2,3 @@
 # requirements for other configurations are located in the requirements subdirectory
 -r requirements/heroku.txt
 
-#test git
-#test2
-#git add one line 1
-#git add noe line 2
