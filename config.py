@@ -93,6 +93,19 @@ class HerokuConfig(ProductionConfig):
         from werkzeug.middleware.proxy_fix import ProxyFix
         app.wsgi_app = ProxyFix(app.wsgi_app)
 
+class DockerConfig(ProductionConfig):
+    @classmethod
+    def init_app(cls,app):
+        ProductConfig.init_app(app)
+
+        #log to stderr
+        import logging
+        import logging
+        from logging import StreamHandler
+        file_handler = StreamHandler()
+        file_handler.setLevel(logging.INFO)
+        app.logger.addHandler(file_handler)
+
 
 
 config = {
@@ -100,6 +113,7 @@ config = {
     'testing': TestingConfig,
     'production': ProductionConfig,
     'heroku': HerokuConfig,
+    'docker':DockerConfig,
 
     'default': DevelopmentConfig
 }
