@@ -96,10 +96,9 @@ class HerokuConfig(ProductionConfig):
 class DockerConfig(ProductionConfig):
     @classmethod
     def init_app(cls,app):
-        ProductConfig.init_app(app)
+        ProductionConfig.init_app(app)
 
         #log to stderr
-        import logging
         import logging
         from logging import StreamHandler
         file_handler = StreamHandler()

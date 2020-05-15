@@ -10,7 +10,7 @@ if os.environ.get('FLASK_COVERAGE'):
 import sys
 import click
 from app import create_app, db
-from app.models import User, Role,Permission,Post,Class,Student,Follow
+from app.models import User, Role,Permission,Post,Follow
 from flask_migrate import Migrate,upgrade
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')

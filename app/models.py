@@ -403,18 +403,18 @@ registrations = db.Table('registrations',
                          db.Column('std_id',db.Integer,db.ForeignKey('students.id')),
                          db.Column('cls_id',db.Integer,db.ForeignKey('classes.id'))
                          )
-class Student(db.Model):
-    __tablename__ ='students'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    classes = db.relationship(
-        'Class',
-        secondary = registrations,
-        backref= db.backref('students',lazy='dynamic') ,
-        lazy = 'dynamic'
-    )
-
-class Class(db.Model):
-    __tablename__ ='classes'
-    id = db.Column(db.Integer,primary_key =True)
-    name = db.Column(db.String)
+# class Student(db.Model):
+#     __tablename__ ='students'
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String)
+#     classes = db.relationship(
+#         'Class',
+#         secondary = registrations,
+#         backref= db.backref('students',lazy='dynamic') ,
+#         lazy = 'dynamic'
+#     )
+#
+# class Class(db.Model):
+#     __tablename__ ='classes'
+#     id = db.Column(db.Integer,primary_key =True)
+#     name = db.Column(db.String)

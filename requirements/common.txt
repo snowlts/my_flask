@@ -1,4 +1,4 @@
-alembic==1.4.1
+alembic==1.4.2
 bleach==3.1.4
 blinker==1.4
 click==7.1.1
@@ -30,3 +30,6 @@ webencodings==0.5.1
 Werkzeug==1.0.0
 WTForms==2.2.1
 html5lib==0.999999999
+
+
+
